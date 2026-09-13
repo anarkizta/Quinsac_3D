@@ -1,0 +1,589 @@
+:root {
+    /* Paleta Corporativa Quinsac */
+    --quinsac-dark: #1A7E46;
+    --quinsac-light: #8CC63F;
+    --quinsac-orange: #F57C00;
+
+    /* Neutros & Industrial */
+    --text-dark: #121212;
+    /* Casi negro para contraste editorial */
+    --text-muted: #666666;
+    --bg-light: #F8F9FA;
+    --bg-white: #FFFFFF;
+    --grid-line: rgba(0, 0, 0, 0.08);
+    /* Líneas sutiles del grid */
+    --grid-line-strong: #1A7E46;
+    /* Líneas de acento */
+
+    /* Tipografía */
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    /* Light para elegancia */
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+
+.display-1,
+.display-2,
+.display-3 {
+    font-weight: 600;
+    /* Bold para impacto en títulos grandes */
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+}
+
+/* --- Utilidades Industrial Grid --- */
+.industrial-container {
+    padding: 0 5vw;
+    /* Márgenes laterales expansivos */
+    max-width: 100%;
+}
+
+.border-right {
+    border-right: 1px solid var(--grid-line);
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--grid-line);
+}
+
+.border-top {
+    border-top: 1px solid var(--grid-line);
+}
+
+.accent-line-top {
+    position: relative;
+}
+
+.accent-line-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--quinsac-dark);
+}
+
+/* --- Botones Minimalistas --- */
+.btn-quinsac {
+    background-color: var(--quinsac-dark);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border-radius: 0;
+    /* Strict square corners */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-quinsac:hover {
+    background-color: #156638;
+    /* Darker green */
+    color: white;
+    padding-right: 55px;
+    /* Arrow effect space */
+}
+
+/* --- Navigation Styles (Hierarchical & Industrial) --- */
+
+/* 1. Top Standard Navbar (Visible at top) */
+.standard-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 30px 5vw;
+    /* Alineado con industrial-container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Fondo negro traslúcido permanente */
+    opacity: 1;
+}
+
+.standard-navbar.scrolled {
+    transform: translateY(-100%);
+    /* Mantener lógica de ocultamiento */
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Fondo ligeramente más oscuro al hacer hover (opcional) */
+.standard-navbar:hover {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.nav-links-desktop {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    opacity: 0.9;
+    transition: opacity 0.3s, color 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    color: var(--quinsac-light);
+}
+
+.nav-item-dropdown {
+    position: relative;
+    padding: 20px 0;
+    /* Area de seguridad */
+}
+
+/* Dropdown Menu Style */
+.dropdown-menu-custom {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 240px;
+    background-color: var(--bg-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-top: 3px solid var(--quinsac-dark);
+}
+
+.nav-item-dropdown:hover .dropdown-menu-custom {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu-custom a {
+    display: block;
+    padding: 12px 25px;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-transform: none;
+    font-weight: 400;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid var(--grid-line);
+}
+
+.dropdown-menu-custom a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu-custom a:hover {
+    background-color: var(--bg-light);
+    color: var(--quinsac-dark);
+    border-left: 3px solid var(--quinsac-dark);
+    padding-left: 30px;
+}
+
+/* Breadcrumbs */
+.breadcrumb-container {
+    padding: 20px 5vw;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--grid-line);
+    margin-bottom: 40px;
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "/";
+    padding: 0 10px;
+    color: var(--text-muted);
+}
+
+.breadcrumb-item a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--quinsac-dark);
+}
+
+.breadcrumb-item.active {
+    color: var(--quinsac-dark);
+    font-weight: 600;
+}
+
+
+/* Hamburger Floating Button */
+.nav-toggle {
+    position: fixed;
+    top: 30px;
+    right: 5vw;
+    z-index: 10001;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--quinsac-dark);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+}
+
+.nav-toggle.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hamburger {
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+.nav-open .hamburger {
+    background-color: transparent;
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* Menu Overlay (Pop-Up Modal 50%) */
+.menu-overlay {
+    position: fixed;
+    top: 100px;
+    right: 5vw;
+    /* Alineado con el botón */
+    width: 50vw;
+    /* Exactamente 50% del ancho */
+    max-width: 500px;
+    /* Límite máximo para pantallas muy grandes */
+    min-width: 300px;
+    /* Límite mínimo para móviles muy pequeños */
+    height: auto;
+    max-height: 80vh;
+    background-color: #111;
+    z-index: 10000;
+    padding: 40px 30px;
+
+    /* Pop-Up Animation Setup */
+    transform: scale(0);
+    transform-origin: top right;
+    /* Origin at the button location */
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy pop-up effect */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.menu-overlay.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Mobile Menu Groups */
+.menu-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.menu-group {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-group-title {
+    display: block;
+    color: var(--quinsac-light);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.menu-link {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.menu-sublink {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 400;
+    color: #aaa;
+    text-decoration: none;
+    margin: 8px 0;
+    display: block;
+    padding-left: 0;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.menu-link:hover,
+.menu-sublink:hover {
+    color: var(--quinsac-light);
+    padding-left: 10px;
+}
+
+.menu-sublink i {
+    color: var(--quinsac-light);
+    transition: transform 0.3s ease;
+}
+
+.menu-sublink:hover i {
+    transform: translateX(5px);
+}
+
+/* Page Transition Curtain */
+.page-transition-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-white);
+    z-index: 10001;
+    transform: translateY(100%);
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Logo inside Curtain */
+.page-transition-curtain img {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.page-transition-curtain.active img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image Gallery Styles */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsive Grid */
+    gap: 0;
+}
+
+.image-item {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.image-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Hide default navbar */
+.navbar {
+    display: none !important;
+}
+
+.hero-section {
+    height: 100vh;
+    background-color: var(--text-dark);
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+/* --- Micro-interactions & Utility Classes --- */
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.transition-scale {
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hover-reveal-trigger:hover .transition-scale,
+.col-md-6:hover .transition-scale {
+    /* Fallback generic hover */
+    transform: scale(1.05);
+}
+
+.bg-white-translucent {
+    background: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid var(--quinsac-dark);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.hover-reveal-trigger:hover .bg-white-translucent,
+.col-md-6:hover .bg-white-translucent {
+    transform: translateY(0);
+}
+
+/* Navbar Brand Adjustment */
+.navbar-brand svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Footer Fix for Industrial */
+footer.bg-dark {
+    background-color: #111 !important;
+    /* Estilo industrial dark */
+    color: #888;
+}
+
+footer h5 {
+    color: white !important;
+    font-weight: 300;
+}
+
+/* Custom Utility Classes added by Assistant */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.text-quinsac-dark {
+    color: var(--quinsac-dark) !important;
+}
+
+/* Identificadores de Botones de Contacto */
+.btn-contact-outline {
+    border: 2px solid var(--quinsac-orange) !important;
+    background-color: transparent !important;
+    color: var(--quinsac-orange) !important;
+    transition: all 0.3s ease;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-contact-outline:hover {
+    background-color: var(--quinsac-orange) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(245, 124, 0, 0.4);
+}
+
+/* Ajuste específico para el navbar */
+.nav-link.btn-contact-outline {
+    padding: 8px 20px !important;
+    border-radius: 4px;
+    margin-left: 10px;
+}
