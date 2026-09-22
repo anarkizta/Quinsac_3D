@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main # O puedes cambiarlo a 'qa' si usas otra rama para pruebas
+      - First_Kick
 
 jobs:
   build-and-deploy:
